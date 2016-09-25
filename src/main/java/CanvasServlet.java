@@ -22,6 +22,6 @@ public class CanvasServlet extends HttpServlet {
             fos.write(image[i]);
 
         resp.setContentType("text/plain");
-        resp.getWriter().println("Готово");
+        resp.getWriter().println("Р“РѕС‚РѕРІРѕ");
     }
 }
