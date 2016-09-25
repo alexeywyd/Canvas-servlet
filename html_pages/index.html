@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<canvas id="canvas" width="200" height="200"></canvas>
+
+<script type="text/javascript">
+
+    var canvas = document.getElementById('canvas');
+    var context = canvas.getContext('2d');
+
+    context.fillStyle = 'red';
+    context.fillRect(0, 0, 200, 200);
+
+    context.fillStyle = 'white';
+    context.fillRect(50, 50, 100, 100);
+
+    var sendCanvas = function(canvas) {
+        var img = canvas.toDataURL('image/png').replace('data:image/png;base64,', '');
+
+        var sender = new XMLHttpRequest();
+        sender.open('POST', '/canvas', true);
+        sender.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        sender.onreadystatechange = function() {
+            if(sender.readyState = 4) {
+                console.log(sender.responseText);
+            }
+        }
+
+        sender.send('img=' + img);
+    }
+
+
+    canvas.onclick = function () {
+        sendCanvas(canvas);
+    }
+
+</script>
+
+</body>
+</html>
